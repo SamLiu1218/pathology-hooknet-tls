@@ -1,0 +1,23 @@
+name: Build HookNet Docker Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repo
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t hooknet_tls -f Dockerfile .
+
+      - name: Save Docker image to tar
+        run: docker save hooknet_tls -o hooknet_tls.tar
+
+      - name: Upload image artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: hooknet_tls
+          path: hooknet_tls.tar
