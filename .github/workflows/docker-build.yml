@@ -17,7 +17,7 @@ jobs:
         run: docker save hooknet_tls -o hooknet_tls.tar
 
       - name: Upload image artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.3
         with:
           name: hooknet_tls
           path: hooknet_tls.tar
